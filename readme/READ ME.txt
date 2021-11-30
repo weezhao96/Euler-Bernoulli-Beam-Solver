@@ -1,0 +1,26 @@
+
+README
+
+1) beam_config : Configure your beam, defining supports, and loads, which is saved as a .mat file in a structure called beam.
+
+2) beam_solver : Run the script which calls all function to solve the beam selected. Required to specifically load the workspace which contains
+		         the beam configuration. 
+
+
+Interpreting Results:
+
+The beam is split up into sections depending on its support and loading configuration. The sections are determined by 'force' and 'moments' discontinuities
+(eg : forces and moments from supports, point loads or point moments applied). Each ends of a section is called a 'bound' which is defined when configuring the beam.
+
+
+Results are saved in a variable named res (short for result, a struct-type variable), generated from running the beam_solver script.
+
+In res, there are results on the shear, bending moment, gradient and displacement distributuion, saved in res.sect(i).totF, res.sect(i).totM, res.sect(i).totgrad,
+and res.sect(i).totdisp, where i = 1 : no. of sections.
+
+The reaction force and moment of supports is saved in beam.bound(i).load/moment, where the i-th bound corresponds to the specific support.
+
+Notes:
+
+- Convention for Forces and Moments : Forces are definied as positive when acting upwards, and moments, positive when acting in the clockwise direction, with the beam
+  with a 'virtual cut' on the right facing side.
